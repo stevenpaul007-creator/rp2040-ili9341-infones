@@ -96,14 +96,14 @@
 #include "audio.h"
 
 
-#define PIN_UP 9
-#define PIN_DN 5
-#define PIN_LT 8
-#define PIN_RT 6
-#define PIN_SL 28
-#define PIN_ST 4
-#define PIN_A 2
-#define PIN_B 3
+#define PIN_UP 17
+#define PIN_DN 19
+#define PIN_LT 16
+#define PIN_RT 18
+#define PIN_SL 22
+#define PIN_ST 26
+#define PIN_A 21
+#define PIN_B 20
 
 const uint LED_PIN = PICO_DEFAULT_LED_PIN;
 
@@ -212,17 +212,6 @@ namespace
 // #define CC(x) ((((x >> 11) & 31) << 0) | (((x >> 5) & 63) << 5) | (((x >> 0) & 31) << 11))
 #define CC(x) (x & 32767)
 const WORD __not_in_flash_func(NesPalette)[64] = {
-    /*
-    CC(0x39ce), CC(0x1071), CC(0x0015), CC(0x2013), CC(0x440e), CC(0x5402), CC(0x5000), CC(0x3c20),
-    CC(0x20a0), CC(0x0100), CC(0x0140), CC(0x00e2), CC(0x0ceb), CC(0x0000), CC(0x0000), CC(0x0000),
-    CC(0x5ef7), CC(0x01dd), CC(0x10fd), CC(0x401e), CC(0x5c17), CC(0x700b), CC(0x6ca0), CC(0x6521),
-    CC(0x45c0), CC(0x0240), CC(0x02a0), CC(0x0247), CC(0x0211), CC(0x0000), CC(0x0000), CC(0x0000),
-    CC(0x7fff), CC(0x1eff), CC(0x2e5f), CC(0x223f), CC(0x79ff), CC(0x7dd6), CC(0x7dcc), CC(0x7e67),
-    CC(0x7ae7), CC(0x4342), CC(0x2769), CC(0x2ff3), CC(0x03bb), CC(0x0000), CC(0x0000), CC(0x0000),
-    CC(0x7fff), CC(0x579f), CC(0x635f), CC(0x6b3f), CC(0x7f1f), CC(0x7f1b), CC(0x7ef6), CC(0x7f75),
-    CC(0x7f94), CC(0x73f4), CC(0x57d7), CC(0x5bf9), CC(0x4ffe), CC(0x0000), CC(0x0000), CC(0x0000),
-*/
-
 CC(0xAE73),CC(0xD120),CC(0x1500),CC(0x1340),CC(0x0E88),CC(0x02A8),CC(0x00A0),CC(0x4078),
 CC(0x6041),CC(0x2002),CC(0x8002),CC(0xE201),CC(0xEB19),CC(0x0000),CC(0x0000),CC(0x0000),
 CC(0xF7BD),CC(0x9D03),CC(0xDD21),CC(0x1E80),CC(0x17B8),CC(0x0BE0),CC(0x40D9),CC(0x61CA),
@@ -774,7 +763,7 @@ void __not_in_flash_func(core1_main)()
     */
 
     #ifdef ILI9341
-     audio_init(7,19654);
+     audio_init(9,19654);
     #endif
     #ifdef ST7789
      audio_init(7,20000);
@@ -1367,7 +1356,7 @@ void display_init()
     sleep_ms(200);
 
     display_write_command(DCS_SET_ADDRESS_MODE);
-    uint8_t mode1 = DISPLAY_ADDRESS_MODE;
+    uint8_t mode1 = DISPLAY_ADDRESS_MODE|DCS_ADDRESS_MODE_MIRROR_X|DCS_ADDRESS_MODE_MIRROR_Y;
     display_write_data(&mode1, 1);
 
     display_write_command(DCS_SET_PIXEL_FORMAT);
@@ -1386,14 +1375,6 @@ void display_init()
 
     display_write_command(DCS_SET_DISPLAY_ON);
     sleep_ms(200);
-// // ENDIAN
-//     display_write_command(0xf6);
-//     uint8_t data1[2]= {0x00,0x01};
-//     display_write_data(data1,2);
-//     uint8_t data2[2]= {0x00,0x00};
-//     display_write_data(data2,2);
-//     uint8_t data3[2]= {0x00,0x20};
-//     display_write_data(data3,2); // 0x0020 = LSB first
 
     /* Enable backlight */
     if (DISPLAY_PIN_BL > 0) {

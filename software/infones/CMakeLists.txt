@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
-set(PICO_SDK_PATH "../../../pico-sdk")
-
+set(PICO_SDK_PATH "/home/seven/pico/pico-sdk")
+set(PICO_BOARD pico2)
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
@@ -24,7 +24,7 @@ add_subdirectory(drivers/sdcard)
 
 add_executable(infoNES InfoNES.cpp K6502.cpp InfoNES_Mapper.cpp InfoNES_pAPU.cpp tar.cpp audio.c menu.cpp RomLister.cpp FrensHelpers.cpp main.cpp )
 
-pico_set_program_name(infoNES "infoNES")
+pico_set_program_name(infoNES "infoNES_pico2")
 pico_set_program_version(infoNES "0.1")
 
 pico_enable_stdio_uart(infoNES 1)
@@ -35,20 +35,20 @@ target_link_libraries(infoNES pico_stdlib)
 
 set(SD_SPI "spi1" CACHE STRING "Specify the SPI bus for the SD card")
 set(SD_CS "13" CACHE STRING "Specify the Chip Select GPIO pin for the SD card")
-set(SD_SCK "10" CACHE STRING "Specify de Clock GPIO pin for the SD card")
-set(SD_MOSI "11" CACHE STRING "Select the Master Out Slave In GPIO pin for the SD card")
+set(SD_SCK "14" CACHE STRING "Specify de Clock GPIO pin for the SD card")
+set(SD_MOSI "15" CACHE STRING "Select the Master Out Slave In GPIO pin for the SD card")
 set(SD_MISO "12" CACHE STRING "Select the Master In Slave Out GPIO pin for the SD card")
 
 set(LCD_CONTROLLER "ILI9341" CACHE STRING "Select the LCD controller type")
 #set(LCD_CONTROLLER "ST7789" CACHE STRING "Select the LCD controller type")
 
 set(LCD_SPI "spi0")
-set(LCD_DC "20")
-set(LCD_CS "17")
-set(LCD_CLK "18")
-set(LCD_MOSI "19")
-set(LCD_RST "21")
-set(LCD_BL "22")
+set(LCD_DC "7")
+set(LCD_CS "4")
+set(LCD_CLK "2")
+set(LCD_MOSI "3")
+set(LCD_RST "8")
+set(LCD_BL "-1")
 set(LCD_MISO "-1")
 
 message("SD card SPI         : ${SD_SPI}")

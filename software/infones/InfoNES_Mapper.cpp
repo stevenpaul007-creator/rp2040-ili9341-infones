@@ -129,15 +129,15 @@ struct MapperTable_tag MapperTable[] =
         {160, Map160_Init},
         {180, Map180_Init},
         {181, Map181_Init},
-        {182, Map182_Init},
-        {183, Map183_Init},
-        {185, Map185_Init},
-        {187, Map187_Init},
-        {188, Map188_Init},
-        {189, Map189_Init},
-        {191, Map191_Init},
-        {193, Map193_Init},
-        {194, Map194_Init},
+        // {182, Map182_Init},
+        // {183, Map183_Init},
+        // {185, Map185_Init},
+        // {187, Map187_Init},
+        // {188, Map188_Init},
+        // {189, Map189_Init},
+        // {191, Map191_Init},
+        // {193, Map193_Init},
+        // {194, Map194_Init},
         {200, Map200_Init},
         {201, Map201_Init},
         {202, Map202_Init},
@@ -272,15 +272,15 @@ struct MapperTable_tag MapperTable[] =
 #include "mapper/InfoNES_Mapper_160.cpp"
 #include "mapper/InfoNES_Mapper_180.cpp"
 #include "mapper/InfoNES_Mapper_181.cpp"
-#include "mapper/InfoNES_Mapper_182.cpp"
-#include "mapper/InfoNES_Mapper_183.cpp"
-#include "mapper/InfoNES_Mapper_185.cpp"
-#include "mapper/InfoNES_Mapper_187.cpp"
-#include "mapper/InfoNES_Mapper_188.cpp"
-#include "mapper/InfoNES_Mapper_189.cpp"
-#include "mapper/InfoNES_Mapper_191.cpp"
-#include "mapper/InfoNES_Mapper_193.cpp"
-#include "mapper/InfoNES_Mapper_194.cpp"
+// #include "mapper/InfoNES_Mapper_182.cpp"
+// #include "mapper/InfoNES_Mapper_183.cpp"
+// #include "mapper/InfoNES_Mapper_185.cpp"
+// #include "mapper/InfoNES_Mapper_187.cpp"
+// #include "mapper/InfoNES_Mapper_188.cpp"
+// #include "mapper/InfoNES_Mapper_189.cpp"
+// #include "mapper/InfoNES_Mapper_191.cpp"
+// #include "mapper/InfoNES_Mapper_193.cpp"
+// #include "mapper/InfoNES_Mapper_194.cpp"
 #include "mapper/InfoNES_Mapper_200.cpp"
 #include "mapper/InfoNES_Mapper_201.cpp"
 #include "mapper/InfoNES_Mapper_202.cpp"

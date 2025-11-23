@@ -57,14 +57,14 @@ struct charCell
 #define SCREENBUFCELLS SCREEN_ROWS *SCREEN_COLS
 static charCell *screenBuffer;
 
-#define UP 9
-#define DN 5
-#define LT 8
-#define RT 6
-#define SL 28
-#define ST 4
-#define A 2
-#define B 3
+#define UP 17
+#define DN 19
+#define LT 16
+#define RT 18
+#define SL 22
+#define ST 26
+#define A 21
+#define B 20
 
 #define _LEFT   1 << 6
 #define _RIGHT   1 << 7
