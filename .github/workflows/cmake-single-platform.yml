@@ -4,8 +4,6 @@ jobs:
     test_build:
         name: Build infoNES program
         runs-on: ubuntu-latest
-        permissions:
-            contents: read
 
         steps:
             - name: Checkout
