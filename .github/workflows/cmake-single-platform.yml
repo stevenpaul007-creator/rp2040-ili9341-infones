@@ -20,8 +20,9 @@ jobs:
 
             - name: Build-pico
               uses: elehobica/build-pico@v1
-              platform: rp2350
-              board: pico2
+              with:
+                platform: rp2350
+                board: pico2
 
             - name: Upload Build Artifacts
               uses: actions/upload-artifact@v4
