@@ -19,6 +19,7 @@ jobs:
                 scheme: 'semver'
 
             - name: Build-pico
+              id: build
               uses: elehobica/build-pico@v1
               with:
                 platform: rp2350
