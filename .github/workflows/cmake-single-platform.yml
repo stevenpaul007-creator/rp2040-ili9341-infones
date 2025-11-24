@@ -1,0 +1,20 @@
+  - name: Pico Build Action
+  # You may pin to the exact commit or the version.
+  # uses: samyarsadat/Pico-Build-Action@dbb9ed078bfed217ef917dd09860c2c5096e8eb9
+  uses: samyarsadat/Pico-Build-Action@v1.3.0
+  with:
+    # Source code directory. The CMakeLists.txt file should be here.
+    source_dir: # default is src
+    # Output directory for build artifacts. This path is relative to the source directory.
+    output_dir: # optional, default is build
+    # A space-separated list of output binary file extensions. Default is '*.uf2 *.elf *.elf.map'. There must be a '*' before each extension.
+    output_ext: # optional, default is *.uf2 *.elf *.elf.map
+    # Additional arguments to pass to CMake.
+    cmake_args: # optional, default is 
+    # A space-separated list of directories to ignore when copying binary build artifacts. CMakeFiles, pico-sdk, pioasm, and elf2uf2 are ignored regardless.
+    output_ignored_dirs: # optional, default is 
+    # Only configure CMake and generate build files. Do not build the project.
+    cmake_config_only: # optional, default is false
+    # CMake generator to use for generating build files. Default is 'Unix Makefiles'.
+    makefiles_generator: # optional, default is Unix Makefiles
+          
