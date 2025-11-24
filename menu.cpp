@@ -57,14 +57,6 @@ struct charCell
 #define SCREENBUFCELLS SCREEN_ROWS *SCREEN_COLS
 static charCell *screenBuffer;
 
-#define UP 17
-#define DN 19
-#define LT 16
-#define RT 18
-#define SL 22
-#define ST 26
-#define A 21
-#define B 20
 
 #define _LEFT   1 << 6
 #define _RIGHT   1 << 7
@@ -81,44 +73,19 @@ void RomSelect_SetLineBuffer(WORD *p, WORD size)
     WorkLineRom = p;
 }
 
-// static constexpr int LEFT = 1 << 6;
-// static constexpr int RIGHT = 1 << 7;
-// static constexpr int UP = 1 << 4;
-// static constexpr int DOWN = 1 << 5;
-// static constexpr int SELECT = 1 << 2;
-// static constexpr int START = 1 << 3;
-// static constexpr int A = 1 << 0;
-// static constexpr int B = 1 << 1;
-// static constexpr int X = 1 << 8;
-// static constexpr int Y = 1 << 9;
-
 void RomSelect_PadState(DWORD *pdwPad1, bool ignorepushed = false)
 {
 
     static DWORD prevButtons{};
-    // auto &gp = io::getCurrentGamePadState(0);
-
-    // int v = (gp.buttons & io::GamePadState::Button::LEFT ? LEFT : 0) |
-    //         (gp.buttons & io::GamePadState::Button::RIGHT ? RIGHT : 0) |
-    //         (gp.buttons & io::GamePadState::Button::UP ? UP : 0) |
-    //         (gp.buttons & io::GamePadState::Button::DOWN ? DOWN : 0) |
-    //         (gp.buttons & io::GamePadState::Button::A ? A : 0) |
-    //         (gp.buttons & io::GamePadState::Button::B ? B : 0) |
-    //         (gp.buttons & io::GamePadState::Button::SELECT ? SELECT : 0) |
-    //         (gp.buttons & io::GamePadState::Button::START ? START : 0) |
-    //         (gp.buttons & io::GamePadState::Button::X ? X : 0) |
-    //         (gp.buttons & io::GamePadState::Button::Y ? Y : 0) |
-    //         0;
-    // v |= nespad_state;
     int v=0;
-    if (gpio_get(A)==0)      v |= _AA;
-    if (gpio_get(B)==0)      v |= _BB;
-    if (gpio_get(ST)==0)      v |= _START;
-    if (gpio_get(SL)==0)      v |= _SELECT;
-    if (gpio_get(LT)==0)      v |= _LEFT;
-    if (gpio_get(RT)==0)      v |= _RIGHT;
-    if (gpio_get(UP)==0)      v |= _UP;
-    if (gpio_get(DN)==0)      v |= _DOWN;
+    if (gpio_get(PIN_A)==0)      v |= _AA;
+    if (gpio_get(PIN_B)==0)      v |= _BB;
+    if (gpio_get(PIN_ST)==0)      v |= _START;
+    if (gpio_get(PIN_SL)==0)      v |= _SELECT;
+    if (gpio_get(PIN_LT)==0)      v |= _LEFT;
+    if (gpio_get(PIN_RT)==0)      v |= _RIGHT;
+    if (gpio_get(PIN_UP)==0)      v |= _UP;
+    if (gpio_get(PIN_DN)==0)      v |= _DOWN;
 
 // #if WII_PIN_SDA >= 0 and WII_PIN_SCL >= 0
 //     v |= wiipad_read();

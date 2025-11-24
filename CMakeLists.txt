@@ -24,7 +24,7 @@ add_subdirectory(drivers/sdcard)
 
 add_executable(infoNES InfoNES.cpp K6502.cpp InfoNES_Mapper.cpp InfoNES_pAPU.cpp tar.cpp audio.c menu.cpp RomLister.cpp FrensHelpers.cpp main.cpp )
 
-pico_set_program_name(infoNES "infoNES_pico2")
+pico_set_program_name(infoNES "infoNES")
 pico_set_program_version(infoNES "0.1")
 
 pico_enable_stdio_uart(infoNES 1)
@@ -51,6 +51,15 @@ set(LCD_RST "8")
 set(LCD_BL "-1")
 set(LCD_MISO "-1")
 
+set(PIN_UP "17")
+set(PIN_DN "19")
+set(PIN_LT "16")
+set(PIN_RT "18")
+set(PIN_SL "22")
+set(PIN_ST "26")
+set(PIN_A "21")
+set(PIN_B "20")
+
 message("SD card SPI         : ${SD_SPI}")
 message("SD card CS          : ${SD_CS}")
 message("SD card SCK         : ${SD_SCK}")
@@ -65,6 +74,14 @@ message("LCD MOSI            : ${LCD_MOSI}")
 message("LCD RST             : ${LCD_RST}")
 message("LCD BL              : ${LCD_BL}")
 message("LCD MISO            : ${LCD_MISO}")
+message("BUTTON UP           : ${PIN_UP}")
+message("BUTTON DN           : ${PIN_DN}")
+message("BUTTON LT           : ${PIN_LT}")
+message("BUTTON RT           : ${PIN_RT}")
+message("BUTTON SL           : ${PIN_SL}")
+message("BUTTON ST           : ${PIN_ST}")
+message("BUTTON A            : ${PIN_A}")
+message("BUTTON B            : ${PIN_B}")
 target_compile_definitions(infoNES PRIVATE
     SDCARD_SPI_BUS=${SD_SPI}
     SDCARD_PIN_SPI0_CS=${SD_CS}
@@ -79,6 +96,14 @@ target_compile_definitions(infoNES PRIVATE
     DISPLAY_PIN_RST=${LCD_RST}
     DISPLAY_PIN_BL=${LCD_BL}
     DISPLAY_PIN_MISO=${LCD_MISO}
+    PIN_A=${PIN_A}
+    PIN_B=${PIN_B}
+    PIN_ST=${PIN_ST}
+    PIN_SL=${PIN_SL}
+    PIN_LT=${PIN_LT}
+    PIN_RT=${PIN_RT}
+    PIN_UP=${PIN_UP}
+    PIN_DN=${PIN_DN}
 )
 if(LCD_CONTROLLER STREQUAL "ILI9341")
     add_compile_definitions(ILI9341)

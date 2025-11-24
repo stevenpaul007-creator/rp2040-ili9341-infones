@@ -96,14 +96,6 @@
 #include "audio.h"
 
 
-#define PIN_UP 17
-#define PIN_DN 19
-#define PIN_LT 16
-#define PIN_RT 18
-#define PIN_SL 22
-#define PIN_ST 26
-#define PIN_A 21
-#define PIN_B 20
 
 const uint LED_PIN = PICO_DEFAULT_LED_PIN;
 
