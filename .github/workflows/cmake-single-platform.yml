@@ -16,7 +16,7 @@ jobs:
                 increment: 'patch'
                 scheme: 'semver'
 
-            - name: Build-pico
+            - name: Build-pico2
               id: build
               uses: elehobica/build-pico@v1
               with:
@@ -35,7 +35,7 @@ jobs:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             
-            - name: Upload UF2 to Release
+            - name: Upload pico2 UF2 to Release
               if: steps.create_release.outputs.upload_url
               uses: actions/upload-release-asset@v1
               with:
@@ -45,3 +45,24 @@ jobs:
                 asset_content_type: application/octet-stream
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            
+            - name: Build-pico
+              id: build_pico
+              uses: elehobica/build-pico@v1
+              with:
+                platform: rp2040
+                board: pico
+
+            - name: Upload pico UF2 to Release
+              if: steps.create_release.outputs.upload_url
+              uses: actions/upload-release-asset@v1
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: build/infoNES.uf2
+                asset_name: infoNES_pico.uf2
+                asset_content_type: application/octet-stream
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            
