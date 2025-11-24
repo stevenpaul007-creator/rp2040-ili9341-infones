@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
-if(NOT DEFINED PICO_SDK_PATH)
-    set(PICO_SDK_PATH "/home/seven/pico/pico-sdk")
-endif()
+# if(NOT DEFINED PICO_SDK_PATH)
+#     set(PICO_SDK_PATH "/home/seven/pico/pico-sdk")
+# endif()
 if(NOT DEFINED PICO_BOARD)
     set(PICO_BOARD pico2)
 endif()
