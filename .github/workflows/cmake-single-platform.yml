@@ -10,6 +10,7 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+              
             - name: Get next version
               id: version_increment
               uses: reecetech/version-increment@2024.10.1
@@ -17,9 +18,8 @@ jobs:
                 increment: 'patch'
                 scheme: 'semver'
 
-            - name: Build Blink Example
-              id: build
-              uses: samyarsadat/Pico-Build-Action@v1
+            - name: Build-pico
+              uses: elehobica/build-pico@v1
 
             - name: Upload Build Artifacts
               uses: actions/upload-artifact@v4
