@@ -40,7 +40,7 @@ jobs:
               uses: actions/upload-release-asset@v1
               with:
                 upload_url: ${{ steps.create_release.outputs.upload_url }}
-                asset_path: build/infoNES.uf2
+                asset_path: build/infoNES_pico2.uf2
                 asset_name: infoNES_pico2.uf2
                 asset_content_type: application/octet-stream
               env:
@@ -59,7 +59,7 @@ jobs:
               uses: actions/upload-release-asset@v1
               with:
                 upload_url: ${{ steps.create_release.outputs.upload_url }}
-                asset_path: build/infoNES.uf2
+                asset_path: build/infoNES_pico.uf2
                 asset_name: infoNES_pico.uf2
                 asset_content_type: application/octet-stream
               env:

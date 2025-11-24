@@ -7,12 +7,20 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
-# set(PICO_SDK_PATH "/home/seven/pico/pico-sdk")
-set(PICO_BOARD pico2)
+if(NOT DEFINED PICO_SDK_PATH)
+    set(PICO_SDK_PATH "/home/seven/pico/pico-sdk")
+endif()
+if(NOT DEFINED PICO_BOARD)
+    set(PICO_BOARD pico2)
+endif()
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(infoNES C CXX ASM)
+
+set(PROJECT_BASE_NAME "infoNES")
+set(PROJECT_FINAL_NAME "${PROJECT_BASE_NAME}_${PICO_BOARD}")
+
+project(${PROJECT_FINAL_NAME} C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
@@ -22,16 +30,16 @@ pico_sdk_init()
 add_subdirectory(drivers/fatfs)
 add_subdirectory(drivers/sdcard)
 
-add_executable(infoNES InfoNES.cpp K6502.cpp InfoNES_Mapper.cpp InfoNES_pAPU.cpp tar.cpp audio.c menu.cpp RomLister.cpp FrensHelpers.cpp main.cpp )
+add_executable(${PROJECT_FINAL_NAME} InfoNES.cpp K6502.cpp InfoNES_Mapper.cpp InfoNES_pAPU.cpp tar.cpp audio.c menu.cpp RomLister.cpp FrensHelpers.cpp main.cpp )
 
-pico_set_program_name(infoNES "infoNES")
-pico_set_program_version(infoNES "0.1")
+pico_set_program_name(${PROJECT_FINAL_NAME} "${PROJECT_FINAL_NAME}")
+pico_set_program_version(${PROJECT_FINAL_NAME} "0.1")
 
-pico_enable_stdio_uart(infoNES 1)
-pico_enable_stdio_usb(infoNES 1)
+pico_enable_stdio_uart(${PROJECT_FINAL_NAME} 1)
+pico_enable_stdio_usb(${PROJECT_FINAL_NAME} 1)
 
 # Add the standard library to the build
-target_link_libraries(infoNES pico_stdlib)
+target_link_libraries(${PROJECT_FINAL_NAME} pico_stdlib)
 
 set(SD_SPI "spi1" CACHE STRING "Specify the SPI bus for the SD card")
 set(SD_CS "13" CACHE STRING "Specify the Chip Select GPIO pin for the SD card")
@@ -82,7 +90,7 @@ message("BUTTON SL           : ${PIN_SL}")
 message("BUTTON ST           : ${PIN_ST}")
 message("BUTTON A            : ${PIN_A}")
 message("BUTTON B            : ${PIN_B}")
-target_compile_definitions(infoNES PRIVATE
+target_compile_definitions(${PROJECT_FINAL_NAME} PRIVATE
     SDCARD_SPI_BUS=${SD_SPI}
     SDCARD_PIN_SPI0_CS=${SD_CS}
     SDCARD_PIN_SPI0_SCK=${SD_SCK}
@@ -112,7 +120,7 @@ elseif(LCD_CONTROLLER STREQUAL "ST7789")
 endif()
 
 # Add any user requested libraries
-target_link_libraries(infoNES
+target_link_libraries(${PROJECT_FINAL_NAME}
         pico_stdlib
 	pico_multicore
         hardware_spi
@@ -128,5 +136,5 @@ target_link_libraries(infoNES
     fatfs        
         )
 
-pico_add_extra_outputs(infoNES)
+pico_add_extra_outputs(${PROJECT_FINAL_NAME})
 
