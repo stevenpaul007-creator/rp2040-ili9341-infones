@@ -25,8 +25,25 @@ jobs:
                 platform: rp2350
                 board: pico2
 
-            - name: Upload Build Artifacts
-              uses: actions/upload-artifact@v4
+            - name: Create GitHub Release
+              id: create_release
+              if: steps.version_increment.outputs.version
+              uses: actions/create-release@v1
               with:
-                  name: workspace_artifacts
-                  path: ${{steps.build.outputs.output_dir}}
+                tag_name: v${{ steps.version_increment.outputs.version }}
+                release_name: Release v${{ steps.version_increment.outputs.version }}
+                body: New patch release triggered by push.
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            
+            - name: Upload UF2 to Release
+              if: steps.create_release.outputs.upload_url
+              uses: actions/upload-release-asset@v1
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: build/infoNES.uf2
+                asset_name: infoNES_pico2.uf2
+                asset_content_type: application/octet-stream
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
